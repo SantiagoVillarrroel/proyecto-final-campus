@@ -204,15 +204,14 @@ Resultado esperado: **15 tests aprobados**.
 
 ## 9. Preparación de Git y entrega
 
-Estado inicial: Git fue instalado con `winget install --id Git.Git -e --source winget`. El repositorio local ya viene con commits limpios; solo falta conectarlo a GitHub.
+Estado actual: Git instalado con `winget install --id Git.Git -e --source winget`, rama `main` publicada y remoto `origin` configurado hacia <https://github.com/SantiagoVillarrroel/proyecto-final-campus>.
+
+El repositorio ya está sincronizado. Para replicar la conexión en otra máquina:
 
 ```powershell
 cd C:\Users\villa\proyecto-final
 
-# 1) Crear repo en GitHub (web) y copiar su URL HTTPS, luego:
-git remote add origin https://github.com/TU_USUARIO/TU_REPO.git
-
-# 2) Verificar rama y subir
+git remote add origin https://github.com/SantiagoVillarrroel/proyecto-final-campus.git
 git branch -M main
 git push -u origin main
 ```
@@ -235,7 +234,7 @@ Genera `entrega.zip` con la carpeta `proyecto-final/` adentro, excluyendo `.git`
 
 ## 10. Comentario listo para Campus GT
 
-> Proyecto final Stage 2: Gestor de Inventario GT. Implementé un CRUD de productos con FastAPI + SQLAlchemy + SQLite, con API REST documentada en `/docs`, interfaz web responsiva, búsqueda, validaciones y manejo de errores. Incluye 15 tests automatizados que pasan correctamente con `pytest`, README con instrucciones de instalación y uso, `.env.example`, `requirements.txt` con dependencias exactas y ZIP de respaldo. Repositorio: [pegar link de GitHub].
+> Proyecto final Stage 2: Gestor de Inventario GT. Implementé un CRUD de productos con FastAPI + SQLAlchemy + SQLite, con API REST documentada en `/docs`, interfaz web responsiva, búsqueda, validaciones y manejo de errores. Incluye 15 tests automatizados que pasan correctamente con `pytest`, README con instrucciones de instalación y uso, `.env.example`, `requirements.txt` con dependencias exactas y ZIP de respaldo. Repositorio: https://github.com/SantiagoVillarrroel/proyecto-final-campus
 
 ---
 
