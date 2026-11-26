@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block titulo %}Productos · Gestor de Inventario GT{% endblock %}
+
+{% block contenido %}
+  <section class="panel">
+    <h1>Inventario de productos</h1>
+
+    <form class="buscador" method="get" action="/">
+      <input
+        type="search"
+        name="busqueda"
+        value="{{ busqueda }}"
+        maxlength="120"
+        placeholder="Buscar por nombre o SKU"
+        aria-label="Buscar productos"
+      />
+      <button type="submit">Buscar</button>
+      {% if busqueda %}<a class="enlace" href="/">Limpiar</a>{% endif %}
+    </form>
+
+    {% if error %}
+      <div class="alerta" role="alert">{{ error }}</div>
+    {% endif %}
+
+    {% if productos %}
+      <div class="tabla-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>SKU</th>
+              <th>Precio</th>
+              <th>Stock</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for producto in productos %}
+              <tr>
+                <td>{{ producto.nombre }}</td>
+                <td><code>{{ producto.sku }}</code></td>
+                <td>$ {{ '%.2f'|format(producto.precio) }}</td>
+                <td>{{ producto.stock }}</td>
+                <td class="acciones">
+                  <a href="/productos/{{ producto.id }}/editar">Editar</a>
+                  <form
+                    method="post"
+                    action="/productos/{{ producto.id }}/eliminar"
+                    data-confirmar="¿Eliminar el producto {{ producto.nombre }}?"
+                  >
+                    <button type="submit" class="peligro">Eliminar</button>
+                  </form>
+                </td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    {% else %}
+      <p class="vacio">No hay productos para mostrar. Cargá el primero con el formulario de abajo.</p>
+    {% endif %}
+  </section>
+
+  <section class="panel">
+    <h2>Agregar producto</h2>
+    <form class="formulario" method="post" action="/" data-validar>
+      <label>
+        Nombre
+        <input name="nombre" maxlength="120" required value="{{ formulario.nombre or '' }}" />
+      </label>
+      <label>
+        SKU
+        <input name="sku" maxlength="40" required value="{{ formulario.sku or '' }}" />
+      </label>
+      <label>
+        Precio
+        <input name="precio" type="number" step="0.01" min="0" required value="{{ formulario.precio or '' }}" />
+      </label>
+      <label>
+        Stock
+        <input name="stock" type="number" step="1" min="0" value="{{ formulario.stock or '0' }}" />
+      </label>
+      <button type="submit" class="primario">Guardar</button>
+    </form>
+  </section>
+{% endblock %}

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block titulo %}Gestor de Inventario GT{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', path='/css/estilos.css') }}" />
+  </head>
+  <body>
+    <header class="cabecera">
+      <div class="contenedor cabecera-interna">
+        <a class="marca" href="/">Gestor de Inventario GT</a>
+        <nav>
+          <a href="/">Productos</a>
+          <a href="/docs" target="_blank" rel="noopener">API (Swagger)</a>
+          <a href="/health">Salud</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="contenedor">
+      {% block contenido %}{% endblock %}
+    </main>
+
+    <footer class="pie contenedor">
+      <small>Trabajo Práctico Final · Stage 2 / Campus GT</small>
+    </footer>
+
+    <script src="{{ url_for('static', path='/js/app.js') }}"></script>
+  </body>
+</html>
